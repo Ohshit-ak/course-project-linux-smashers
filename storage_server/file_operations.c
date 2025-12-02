@@ -7,9 +7,10 @@
 #include <sys/stat.h>
 #include <dirent.h>
 #include <time.h>
+#include <unistd.h>
 
-#define BASE_STORAGE_DIR "../storage/"
-#define BASE_BACKUP_DIR "../backups/"
+#define BASE_STORAGE_DIR "./storage/"
+#define BASE_BACKUP_DIR "./backups/"
 
 // External globals (defined in storage_server_modular.c)
 extern char ss_id[64];
@@ -18,11 +19,17 @@ extern char backup_dir[MAX_PATH];
 
 // Initialize storage directories
 void init_storage() {
+    // Get current working directory for visibility
+    char cwd[1024];
+    if (getcwd(cwd, sizeof(cwd)) != NULL) {
+        printf("📂 Storage Server Working Directory: %s\n", cwd);
+    }
+    
     // Create base directories if they don't exist
     mkdir(BASE_STORAGE_DIR, 0777);
     mkdir(BASE_BACKUP_DIR, 0777);
     
-    // Create SS-specific subdirectories: ../storage/SS1/ and ../backups/SS1/
+    // Create SS-specific subdirectories: ./storage/SS1/ and ./backups/SS1/
     snprintf(storage_dir, sizeof(storage_dir), "%s%s/", BASE_STORAGE_DIR, ss_id);
     snprintf(backup_dir, sizeof(backup_dir), "%s%s/", BASE_BACKUP_DIR, ss_id);
     
@@ -32,8 +39,19 @@ void init_storage() {
     char log_msg[256];
     snprintf(log_msg, sizeof(log_msg), "Storage directories initialized: %s and %s", storage_dir, backup_dir);
     log_message("storage_server", log_msg);
-    printf("Storage: %s\n", storage_dir);
-    printf("Backups: %s\n", backup_dir);
+    
+    // Display full absolute paths for visibility
+    char abs_storage[1024], abs_backup[1024];
+    realpath(storage_dir, abs_storage);
+    realpath(backup_dir, abs_backup);
+    
+    printf("\n╔════════════════════════════════════════════════════════════════╗\n");
+    printf("║ 📁 STORAGE SERVER DIRECTORIES                                  ║\n");
+    printf("╠════════════════════════════════════════════════════════════════╣\n");
+    printf("║ Storage ID: %-50s ║\n", ss_id);
+    printf("║ Storage:    %-50s ║\n", abs_storage);
+    printf("║ Backups:    %-50s ║\n", abs_backup);
+    printf("╚════════════════════════════════════════════════════════════════╝\n\n");
 }
 
 // List all files in storage directory

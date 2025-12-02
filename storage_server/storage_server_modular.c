@@ -36,8 +36,8 @@ int ns_port;
 int nm_port;  // Port for NS communication
 int client_port;  // Port for client communication
 char ss_id[64];
-char storage_dir[MAX_PATH];  // Dynamic: ../storage/SS1/
-char backup_dir[MAX_PATH];   // Dynamic: ../backups/SS1/
+char storage_dir[MAX_PATH];  // Dynamic: ./storage/SS1/
+char backup_dir[MAX_PATH];   // Dynamic: ./backups/SS1/
 
 // Forward declarations
 void* handle_client(void *arg);

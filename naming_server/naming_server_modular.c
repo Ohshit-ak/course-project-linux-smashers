@@ -285,7 +285,7 @@ void* handle_client(void *arg) {
                     // Primary SS down - try cache, then backup, then failover to another SS
                     printf("  → SS unavailable, trying cache/backup/failover\n");
                     char cache_path[MAX_PATH];
-                    snprintf(cache_path, sizeof(cache_path), "../cache/%s", msg.filename);
+                    snprintf(cache_path, sizeof(cache_path), "./cache/%s", msg.filename);
                     
                     FILE *cache_file = fopen(cache_path, "r");
                     if (cache_file != NULL) {
@@ -307,7 +307,7 @@ void* handle_client(void *arg) {
                     
                     // Try backup directory
                     char backup_path[MAX_PATH];
-                    snprintf(backup_path, sizeof(backup_path), "../backups/%s/%s", 
+                    snprintf(backup_path, sizeof(backup_path), "./backups/%s/%s", 
                              entry->info.storage_server_id, msg.filename);
                     
                     FILE *backup_file = fopen(backup_path, "r");
@@ -317,7 +317,7 @@ void* handle_client(void *arg) {
                         fclose(backup_file);
                         
                         // Create cache copy for future use
-                        mkdir("../cache", 0777);
+                        mkdir("./cache", 0777);
                         FILE *cache_copy = fopen(cache_path, "w");
                         if (cache_copy) {
                             fwrite(msg.data, 1, bytes_read, cache_copy);
@@ -394,7 +394,7 @@ void* handle_client(void *arg) {
                 if (ss == NULL || !ss->is_active) {
                     // Primary SS down - try cache, then backup, then failover
                     char cache_path[MAX_PATH];
-                    snprintf(cache_path, sizeof(cache_path), "../cache/%s", msg.filename);
+                    snprintf(cache_path, sizeof(cache_path), "./cache/%s", msg.filename);
                     
                     FILE *cache_file = fopen(cache_path, "r");
                     if (cache_file != NULL) {
@@ -416,7 +416,7 @@ void* handle_client(void *arg) {
                     
                     // Try backup
                     char backup_path[MAX_PATH];
-                    snprintf(backup_path, sizeof(backup_path), "../backups/%s/%s", 
+                    snprintf(backup_path, sizeof(backup_path), "./backups/%s/%s", 
                              entry->info.storage_server_id, msg.filename);
                     
                     FILE *backup_file = fopen(backup_path, "r");
@@ -426,7 +426,7 @@ void* handle_client(void *arg) {
                         fclose(backup_file);
                         
                         // Cache it
-                        mkdir("../cache", 0777);
+                        mkdir("./cache", 0777);
                         FILE *cache_copy = fopen(cache_path, "w");
                         if (cache_copy) {
                             fwrite(msg.data, 1, bytes_read, cache_copy);
@@ -1592,11 +1592,19 @@ int main() {
     init_users_and_sessions();
     
     // Create cache directory
-    mkdir("../cache", 0777);
+    mkdir("./cache", 0777);
     printf("✓ Cache directory ready\n");
     
+    // Get and display working directory
+    char cwd[1024];
+    if (getcwd(cwd, sizeof(cwd)) != NULL) {
+        printf("📂 Naming Server Working Directory: %s\n", cwd);
+        printf("   Cache:   %s/cache/\n", cwd);
+        printf("   Backups: %s/backups/\n", cwd);
+    }
+    
     // Load file registry from disk (preserves ACLs across restarts)
-    load_file_registry("../naming_server/registry.dat");
+    load_file_registry("./naming_server/registry.dat");
     
     // Start heartbeat monitor thread
     pthread_t heartbeat_thread;
