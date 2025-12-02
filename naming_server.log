@@ -1,0 +1,32 @@
+[Tue Dec  2 22:21:13 2025] No existing registry found - starting fresh
+[Tue Dec  2 22:21:13 2025] Server started successfully
+[Tue Dec  2 22:21:22 2025] Registered NEW Storage Server: SS1 at 10.113.8.42:8081
+[Tue Dec  2 22:21:22 2025] Added file to registry
+[Tue Dec  2 22:21:32 2025] Client logged in: Shesh from 10.113.8.42
+[Tue Dec  2 22:21:54 2025] Request from Shesh: type=10, file=k.txt
+[Tue Dec  2 22:21:54 2025] Added file to registry
+[Tue Dec  2 22:21:54 2025] Created file 'k.txt' by Shesh on SS1
+[Tue Dec  2 22:22:25 2025] Request from Shesh: type=12, file=k.txt
+[Tue Dec  2 22:22:25 2025] WRITE request for 'k.txt' sentence 0 by Shesh - forwarded to SS1
+[Tue Dec  2 22:23:05 2025] Request from Shesh: type=11, file=k.txt
+[Tue Dec  2 22:23:05 2025] READ request for 'k.txt' by Shesh - forwarded to SS1
+[Tue Dec  2 22:23:40 2025] Request from Shesh: type=12, file=k.txt
+[Tue Dec  2 22:23:40 2025] WRITE request for 'k.txt' sentence 0 by Shesh - forwarded to SS1
+[Tue Dec  2 22:23:50 2025] Request from Shesh: type=11, file=k.txt
+[Tue Dec  2 22:23:50 2025] READ request for 'k.txt' by Shesh - forwarded to SS1
+[Tue Dec  2 22:24:37 2025] Request from Shesh: type=12, file=k.txt
+[Tue Dec  2 22:24:37 2025] WRITE request for 'k.txt' sentence 0 by Shesh - forwarded to SS1
+[Tue Dec  2 22:24:50 2025] Request from Shesh: type=11, file=k.txt
+[Tue Dec  2 22:24:50 2025] READ request for 'k.txt' by Shesh - forwarded to SS1
+[Tue Dec  2 22:25:03 2025] Request from Shesh: type=12, file=k.txt
+[Tue Dec  2 22:25:03 2025] WRITE request for 'k.txt' sentence 5 by Shesh - forwarded to SS1
+[Tue Dec  2 22:25:07 2025] Request from Shesh: type=12, file=k.txt
+[Tue Dec  2 22:25:07 2025] WRITE request for 'k.txt' sentence 4 by Shesh - forwarded to SS1
+[Tue Dec  2 22:25:41 2025] Request from Shesh: type=12, file=k.txt
+[Tue Dec  2 22:25:41 2025] WRITE request for 'k.txt' sentence 4 by Shesh - forwarded to SS1
+[Tue Dec  2 22:25:51 2025] Request from Shesh: type=11, file=k.txt
+[Tue Dec  2 22:25:51 2025] READ request for 'k.txt' by Shesh - forwarded to SS1
+[Tue Dec  2 22:26:03 2025] Request from Shesh: type=12, file=k.txt
+[Tue Dec  2 22:26:03 2025] WRITE request for 'k.txt' sentence 3 by Shesh - forwarded to SS1
+[Tue Dec  2 22:26:12 2025] Request from Shesh: type=11, file=k.txt
+[Tue Dec  2 22:26:12 2025] READ request for 'k.txt' by Shesh - forwarded to SS1
