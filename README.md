@@ -1,7 +1,5 @@
 # 📁 Docs++ - Distributed File System
 
-> **Note:** THIS PROJECT HAS BEEN GENERATED ENTIRELY USING GITHUB COPILOT.
-
 A robust, distributed file system implementation in C that enables collaborative file management with advanced features like access control, file streaming, command execution, and comprehensive logging.
 
 ---
